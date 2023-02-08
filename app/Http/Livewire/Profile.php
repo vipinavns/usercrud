@@ -9,7 +9,7 @@ use Livewire\Component;
 
 class Profile extends Component
 {
-    public User $user;
+    public $user;
     public $showSavedAlert = false;
     public $showDemoNotification = false;
 
@@ -31,16 +31,13 @@ class Profile extends Component
 
     public function save()
     {
-        if(env('IS_DEMO')) {
-            $this->showDemoNotification = true;
-        }
-        else {
-        $this->validate();
+        
+        //$this->validate();
 
         $this->user->save();
 
         $this->showSavedAlert = true;
-        }
+        
     }
 
     public function render()

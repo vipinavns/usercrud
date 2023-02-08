@@ -21,11 +21,11 @@ class Login extends Component
     public function mount()
     {
         if (auth()->user()) {
-            return redirect()->intended('/dashboard');
+            return redirect()->intended('/profile');
         }
         $this->fill([
-            'email' => 'admin@volt.com',
-            'password' => 'secret',
+            'email' => 'vipinavns@gmail.com',
+            'password' => 'vipin@135',
         ]);
     }
 
@@ -35,7 +35,7 @@ class Login extends Component
         if (auth()->attempt(['email' => $this->email, 'password' => $this->password], $this->remember_me)) {
             $user = User::where(['email' => $this->email])->first();
             auth()->login($user, $this->remember_me);
-            return redirect()->intended('/dashboard');
+            return redirect()->intended('/profile');
         } else {
             return $this->addError('email', trans('auth.failed'));
         }
